@@ -9,9 +9,10 @@ import thunk from 'redux-thunk';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
+import {contactReducer} from './store/reducers/contactsReducer';
 
 const rootReducer = combineReducers({
-
+    contacts:contactReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
