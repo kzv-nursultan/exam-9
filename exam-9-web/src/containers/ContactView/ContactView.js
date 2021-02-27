@@ -12,7 +12,7 @@ const ContactView = props => {
 
     const store = useSelector(state=>state.contacts.value);
     const [show, setShow] = useState(false);
-    const [info, setInfo] = useState({
+    const [setInfo] = useState({
         name:'',
         phone:'',
         email:'',
