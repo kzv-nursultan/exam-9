@@ -1,12 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import axios from './axiosBase';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import ContactCart from './components/ContactCard/ContactCart';
 
 export default function App() {
+    const [contactList, setContactList] = useState({});
+
+    useEffect(()=>{
+      const fetchData = async () => {
+        const response = await axios.get('contacts/.json');
+        setContactList(response.data);
+        console.log(response.data);
+      };
+      fetchData().catch(console.error());
+    },[]);
+
+    let contacts = 'empty';
+
+    if(contactList) {
+      contacts = (
+        Object.keys(contactList).map(key=>(
+              <ContactCart key={key}
+              photo={contactList[key]['photo']}
+              name={contactList[key]['name']}
+              />
+          ))
+      )
+    }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+        {contacts}
     </View>
   );
 }
