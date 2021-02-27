@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteContact } from '../../store/actions/contactAction';
-import ContactInfo from '../ContactInfo/ContactInfo';
-import Modal from '../UI/Modal/Modal';
+import ContactInfo from '../../components/ContactInfo/ContactInfo';
+import Modal from '../../components/UI/Modal/Modal';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ContactView = props => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const deleteBtnHandler = id => dispatch(deleteContact(id));
 
     const store = useSelector(state=>state.contacts.value);
@@ -26,6 +28,10 @@ const ContactView = props => {
         setShow(false);
     };
 
+    const editBtnHandler = id => {
+        history.push('/edit/' + id);
+    };
+
     let contactInfo = 'empty';
 
     if(store[props.id]) {
@@ -35,7 +41,8 @@ const ContactView = props => {
             name={store[props.id]['name']}
             email={store[props.id]['email']}
             phone={store[props.id]['phone']}
-            delete={()=>deleteBtnHandler(props.id)}/>            
+            delete={()=>deleteBtnHandler(props.id)}
+            edit={()=>editBtnHandler(props.id)}/>            
         );
     };
 

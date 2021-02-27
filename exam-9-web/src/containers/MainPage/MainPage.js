@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getContact } from '../../store/actions/contactAction';
-import ContactView from '../../components/ContactView/ContactView';
+import ContactView from '../ContactView/ContactView';
 
 
 const MainPage = () => {

@@ -1,9 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from '../../axiosBase';
 
-const AddContact = () => {
+import { useDispatch, useSelector } from 'react-redux';
+import { editContact } from '../../store/actions/contactAction';
+
+const AddContact = props => {
+    const dispatch = useDispatch()
     const history = useHistory();
+    const store = useSelector(state=> state.contacts.value);
 
     const [inputted, setInputted] = useState({
         name:'',
@@ -11,6 +16,12 @@ const AddContact = () => {
         email:'',
         photo:''
     });
+
+    useEffect(()=>{
+        if(props.id){
+            setInputted(store[props.id]);
+        };
+    },[props.id]);
 
     const onChangeHandler = e => {
         const name = e.target.name;
@@ -26,25 +37,30 @@ const AddContact = () => {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        const contact = {
-            ...inputted
+
+        if (props.id) { 
+            dispatch(editContact(props.id, inputted));
+        } else {
+            const contact = {
+                ...inputted
+            };
+    
+            await axios.post('contacts/.json',contact);
+    
+            setInputted({
+                name:'',
+                phone:'',
+                email:'',
+                photo:''  
+            });
         };
-
-        await axios.post('contacts/.json',contact);
-
-        setInputted({
-            name:'',
-            phone:'',
-            email:'',
-            photo:''  
-        });
     };
 
     return (
         <div className='container border border-secondary p-2 text-center' 
         style={{margin:'10px auto'}}>
             <h3>
-                Add new Contact
+                Contact Info
             </h3>
             <form onSubmit={onSubmitHandler}>
                 <p>

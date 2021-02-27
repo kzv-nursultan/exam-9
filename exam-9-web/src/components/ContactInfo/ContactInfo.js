@@ -21,7 +21,8 @@ const ContactInfo = props => {
                     {props.email}
                 </p>
                 <div className='m-2'>
-                    <button className='m-1 bg-primary text-white'>
+                    <button className='m-1 bg-primary text-white'
+                    onClick={props.edit}>
                         Edit
                     </button>
                     <button className='bg-secondary text-white'
