@@ -22,8 +22,10 @@ const MainPage = () => {
         contactList = (
             Object.keys(store.value).map(key=>(
                 <ContactView key={key}
+                id={key}
                 image={store.value[key]['photo']}
-                name={store.value[key]['name']}/>
+                name={store.value[key]['name']}
+                />
             ))
         );
     };
