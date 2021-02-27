@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, Image,StyleSheet} from 'react-native';
+import {View, Text, Image,StyleSheet} from 'react-native';
 
 const ContactInfo = props => {
     return(
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
         fontSize:20,
         margin:5
     }
-})
+});

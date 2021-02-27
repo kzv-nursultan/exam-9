@@ -12,16 +12,9 @@ const ContactView = props => {
 
     const store = useSelector(state=>state.contacts.value);
     const [show, setShow] = useState(false);
-    const [setInfo] = useState({
-        name:'',
-        phone:'',
-        email:'',
-        photo:''
-    });
 
     const moreBtnHandler = () => {
         setShow(true);
-        setInfo(store[props.id]);
     };
 
     const closeModal = () => {

@@ -15,7 +15,7 @@ const ModalWindow = props => {
         }
     },[props.id]);
 
-    let list = 'empty'
+    let list = 'empty';
 
     if (contact) {
         list = (

@@ -21,7 +21,7 @@ const AddContact = props => {
         if(props.id){
             setInputted(store[props.id]);
         };
-    },[props.id]);
+    },[props.id, store]);
 
     const onChangeHandler = e => {
         const name = e.target.name;
@@ -30,7 +30,6 @@ const AddContact = props => {
             ...prevState,
             [name]:value
         }));
-        console.log(inputted);
     };
 
     const backToBtnHandler = () => history.push('/');
